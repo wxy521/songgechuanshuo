@@ -1,2 +1,6 @@
 # songgechuanshuo
-颂歌传说代码
+## Copyright@[NEU]
+
+## Introduction
+This is a RPG web game
+
