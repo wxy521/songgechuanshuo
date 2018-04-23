@@ -7,14 +7,14 @@ var LEVELS = [
 		"                                                                                ",
 		"                                                                  xxx           ",
 		"                                                   xx      xx    xx!xx          ",
-		"                                          xx                  x!!!x          ",
+		"                                          xx                     x!!!x          ",
 		"                                                                 xx!xx          ",
 		"                                   xxxxx                          xvx           ",
 		"                                                                             xx  ",
-		"  xx                                                                         x  ",
-		"  x                                                                          x  ",
-		"  x                                      xxxxx                               x  ",
-		"  x          xxxx                                                            x  ",
+		"  xx                                                                          x  ",
+		"  x                                                                           x  ",
+		"  x                                      xxxxx                                x  ",
+		"  x          xxxx                                                              x  ",
 		"  x  @       x  x                                                xxxxx        x  ",
 		"  x         x  x                                                xxxxx        o  ",
 		"  xxxxxxxxxxxx  xxxxxxxxxxxxxxx   xxxxxxxxxxxxxxxxxxxx     xxxxxxx   xxxxxxxxx  ",
@@ -158,20 +158,20 @@ Vector.prototype.times = function(scale) {
 var actorchars = {
 	"@": Player,
 	"o": Coin,
-	"=": Lava,
-	"|": Lava,
-	"v": Lava
+	"=": Monster,
+	"|": Monster,
+	"v": Monster
 };
 
 function Player(pos) {
 	//this.pos = pos.plus(new Vector(0, -.5));
 	this.pos = new Vector(0,0);
-	this.size = new Vector(3, 3);
+	this.size = new Vector(1,2);
 	this.speed = new Vector(0, 0);
 }
 Player.prototype.type = "player";
 
-function Lava(pos, ch) {
+function Monster(pos, ch) {
 	this.pos = pos;
 	this.size = new Vector(1, 1);
 	if (ch === "=")
@@ -183,7 +183,7 @@ function Lava(pos, ch) {
 		this.repeatPos = pos;
 	}
 }
-Lava.prototype.type = "lava";
+Monster.prototype.type = "Monster";
 
 function Coin(pos) {
 	this.basePos = this.pos = pos;
@@ -215,13 +215,13 @@ function Level(plan) {
 			else if (ch === "x")
 				fieldType = "wall";
 			else if (ch === "!")
-				fieldType = "lava";
+				fieldType = "sea";
 			else if (ch === "|")
-				fieldType = "lava";
+				fieldType = "Monster";
 			else if (ch === "=")
-				fieldType = "lava";
+				fieldType = "Monster";
 			else if (ch === "v") {
-				fieldType = "lava";
+				fieldType = "Monster";
 				console.log(fieldType);
 			}
 			gridLine.push(fieldType)
@@ -298,8 +298,8 @@ DOMDisplay.prototype.scrollPlayerIntoView = function() {
 		bottom = top + height;
 
 	var player = this.level.player;
-	var center = player.pos.plus(player.size.times(0.5))
-		.times(scale);
+	var center = player.pos.plus(player.size.times(0.5)).times(scale);
+		
 
 	if (center.x < left + margin)
 		this.wrap.scrollLeft = center.x - margin;
@@ -358,11 +358,11 @@ Level.prototype.animate = function(step, keys) {
 	}
 };
 
-Lava.prototype.act = function(step, level) {
+Monster.prototype.act = function(step, level) {
 	var newPos = this.pos.plus(this.speed.times(step));     //首先，计算移动后的位置；
 	if (!level.obstacleAt(newPos, this.size))   //然后，判断是否碰到别的物体，如果没碰到，移动到下一个位置。
-		this.pos = newPos;               //如果碰到了，对于滴落的lava，它有个属性repeatPos（初始位置），直接移动到repeatPos；
-	else if (this.repeatPos)             //没有repeatPos属性的lava，都可以往复运动，撞墙之后弹回，即speed逆转。
+		this.pos = newPos;               //如果碰到了，对于滴落的Monster，它有个属性repeatPos（初始位置），直接移动到repeatPos；
+	else if (this.repeatPos)             //没有repeatPos属性的Monster，都可以往复运动，撞墙之后弹回，即speed逆转。
 		this.pos = this.repeatPos;
 	else
 		this.speed = this.speed.times(-1);
@@ -393,7 +393,6 @@ Player.prototype.moveX = function(step, level, keys) {
 		this.pos = newPos;
 };
 
-//var gravity = 30;
 var jumpSpeed = 10;
 
 Player.prototype.moveY = function(step, level, keys) {
@@ -407,18 +406,7 @@ Player.prototype.moveY = function(step, level, keys) {
 		level.playerTouched(obstacle);
 	else
 		this.pos = newPos;
-	/*var motion = new Vector(0, this.speed.y * step);
-	var newPos = this.pos.plus(motion);
-	var obstacle = level.obstacleAt(newPos, this.size);
-	if (obstacle) {
-		level.playerTouched(obstacle);
-		if (keys.up && this.speed.y > 0)
-			this.speed.y = -jumpSpeed;
-		else
-			this.speed.y = 0;
-	} else {
-		this.pos = newPos;
-	}*/
+
 };
 
 Player.prototype.act = function(step, level, keys) {
@@ -435,18 +423,45 @@ Player.prototype.act = function(step, level, keys) {
 		this.size.y -= step;
 	}
 };
+ var contentout = [];  
+ var content = "ducle, ducle, ducle, ducle...";  
+ contentout = content.substring(0, content.length);  
+var sub = 0;  
+var time = 0;  
+ 
+function myFunction()
+{
+var carname="ucle, ducle, ducle, ducle...";
+document.getElementById("demo").innerHTML=carname;
+}
 
 Level.prototype.playerTouched = function(type, actor) {
-	if (type == "lava" && this.status == null) {
-		this.status = "lost";
+	if (type == "Monster" && this.status == null) {
+		//alert("加入战斗");
+		//in();
+		//this,finishDelay = 1;
+		//setTimeout(this.status = "lost",5000);  
+		//var arrows = "null";
+		//this.status = "lost";
+		myFunction();
 		this.finishDelay = 1;
-	} else if (type == "coin") {
+	} 
+	if (type == "sea" && this.status == null)
+	{
+        alert("对话");
+		//this,finishDelay = 1;
+		setTimeout(this.status = "lost",5000);  
+		//this.status = "lost";
+		this.finishDelay = 1;
+	}
+	if (type == "coin") {
 		this.actors = this.actors.filter(function(other) {
 			return other != actor;
 		});
 		if (!this.actors.some(function(actor) {
 				return actor.type == "coin";
 			})) {
+			alert("进入下一地图");
 			this.status = "won";
 			this.finishDelay = 1;
 		}
@@ -457,7 +472,7 @@ var arrowCodes = {
 	37: "left",
 	38: "up",
 	39: "right",
-	40: "down"
+	40: "down",
 };
 
 function trackKeys(codes) {
@@ -492,6 +507,13 @@ function runAnimation(frameFunc) {
 }
 
 var arrows = trackKeys(arrowCodes);
+
+// function cleararrow(newcode)
+// {
+//     var arrows = "null";
+//     return arrows;
+// }
+
 
 function runLevel(level, Display, andThen) {
 	var display = new Display(document.body, level);
