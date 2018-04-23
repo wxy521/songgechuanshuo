@@ -17,9 +17,13 @@ h2 {
   padding: 0;
 }
 
-.lava, .actor {
-  background: #e55;
+.Monster, .actor {
+  background: red;
 }
+.sea {
+  background: blue;
+}
+
 
 .wall {
   background: #444;
@@ -52,4 +56,6 @@ h2 {
 .game {
   position: relative;
   overflow: hidden;
+  max-width: 1000px;  
+  max-height: 1050px;
 }
