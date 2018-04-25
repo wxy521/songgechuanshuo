@@ -1,0 +1,78 @@
+body {
+    background-image: url(../image/1.jpg);
+    overflow: hidden;
+}
+
+
+
+.fire {
+    position: absolute;
+    width: 200px;
+    height:200px;
+    bottom: 200px;
+    left: 1000px;
+    border-radius: 45%;
+    box-sizing: border-box;
+    //border: 20px solid #000;
+    border-bottom: 200px solid #b5932f;
+    transform: translate(-90%, 0) scaleX(.5);
+    filter: blur(10px) contrast(20);
+}
+
+.dot {
+    position: absolute;
+    bottom: -110px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 8%;
+}
+.btns {
+  display: block;
+  position: absolute;
+  right: 70px;
+  bottom: 90px;
+  font-weight: normal;
+  width: 120px;
+  height: 34px;
+  padding: 5px;
+  background: #00FF00;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.new {
+  display: block;
+  position: absolute;
+  right: 70px;
+  bottom: 40px;
+  font-weight: normal;
+  width: 120px;
+  height: 34px;
+  padding: 5px;
+  background: #00FF00;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.menuimage
+{    
+    position: absolute;
+   background-image: url(../image/2.jpg);
+   right: 500px;
+   bottom: 500px;
+   font-weight: normal;
+   width: 650px;
+   height: 200px;
+   padding: 5px;
+
+}
+
+@keyframes move {
+    100% {
+        transform: translateY(-350px);
+    }
+}
