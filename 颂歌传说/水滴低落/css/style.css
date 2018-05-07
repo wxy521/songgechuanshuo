@@ -1,0 +1,11 @@
+body {
+	background-color: black;
+}
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-filter: blur( 10px ) contrast( 10 );
+	-moz-filter: blur( 10px ) contrast( 10 );
+	filter: blur( 10px ) contrast( 10 );
+}
