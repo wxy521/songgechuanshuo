@@ -741,54 +741,88 @@ function leaves(level) {
 //战斗动画逻辑
 leaves.prototype.BattleTapdiv = function () {
     var BattleTapdiv = element("div", "BattleTapdiv");
-    BattleTapdiv.style.width = "1152";
-    BattleTapdiv.style.height = "560";
-    //var animation = BattleTapdiv.appendChild("canvas", "animation");
+    //document.write("<canvas id=\"BattleTapdiv\" width=\"1152px\" height=\"560px\">");
+    //document.write("</canvas>");
+    BattleTapdiv.style.width = "1000px";
+    BattleTapdiv.style.height = "560px";
+    var animation = element("canvas", "animation");
+    BattleTapdiv.appendChild(animation);
+    animation.id = 'animation';
+    animation.style.width = "1000px";
+    animation.style.height = "560px";
+    animation.style.background = "#ffffff";
+    //var animation = element("canvas", "animation");
     //animation.style.width = "1152";
     //animation.style.height = "560";
     return BattleTapdiv;
 }
 ///战斗画面
-//function DrawBattle() {
-//    battle.hidden = "";
-//    var c = document.getElementById("animation");
-//    var cxt = c.getContext("2d");
-//    var x1 = 200;
-//    var x2 = 520;
-//    var y = 150;
-//    var player = new Image()
-//    player.src = "image/death.png"
-//    player.onload = function () {
-//        cxt.drawImage(player, 0, 0, 200, 400);
-//    }
-//    //根据选择的magic不同skill_1选择的图片不同
-//    var skill_1 = new Image()
-//    skill_1.src = "image/4.png"
-//    //cxt.drawImage(skill_1, 355, 50, 80, 80);
-//    //根据怪物不同skill_2选择的图片不同
-//    var skill_2 = new Image()
-//    skill_2.src = "image/3.jpg"
-//    Draw();
-//    function Draw() {
-//        cxt.clearRect(200, 0, 400, 450);
-//        y += 0;
-//        if (x1 < 600 - 80) {
-//            x1 += 20;
-//            cxt.drawImage(skill_1, x1, y, 80, 80);
-//        }
-//        if (x1 == 600 - 80 && x2 >= 200) {
-//            x2 -= 20;
-//            cxt.drawImage(skill_2, x2, y, 80, 80);
-//        }
-//    }
-//    window.setInterval(draw, 100);
-//    //根据遇到的怪物不同选择的怪物图片不同
-//    var monster1 = new Image()
-//    monster1.src = "image/housewoman.png"
-//    monster1.onload = function () {
-//        cxt.drawImage(monster1, 600, 0);
-//    }
-//}
+function DrawBattle() {
+    var c = document.getElementById("animation");
+    var cxt = c.getContext("2d");
+    var player = new Image()
+    player.src = "image/death.png"
+    player.onload = function () {
+        cxt.drawImage(player, 0, 5, 110, 145);
+    }
+    //根据遇到的怪物不同选择的怪物图片不同
+    var monster1 = new Image()
+    monster1.src = "image/housewoman.png"
+    monster1.onload = function () {
+        cxt.drawImage(monster1, 190, 5, 110, 145);
+    }
+    //Draw();
+    //window.setInterval(Draw, 100);
+}
+
+var x1_1 = 110;
+var x2_1 = 174;
+var y_1 = 15;
+function Draw_1() {
+    var c = document.getElementById("animation");
+    var cxt = c.getContext("2d");
+    //根据选择的magic不同skill_1选择的图片不同
+    var skill_1_1 = new Image();
+    skill_1_1.src = "image/1.jpg";
+    //根据怪物不同skill_2选择的图片不同
+    var skill_2_1 = new Image();
+    skill_2_1.src = "image/3.jpg";
+    cxt.clearRect(110, 0, 80, 150);
+    y_1 += 0;
+    if (x1_1 < 174) {
+        x1_1 += 2;
+        cxt.drawImage(skill_1_1, x1_1, y_1, 15, 15);
+    }
+    if (x1_1 == 174 && x2_1 > 110) {
+        x2_1 -= 2;
+        cxt.drawImage(skill_2_1, x2_1, y_1, 15, 15);
+    }
+}
+var x1_2 = 110;
+var x2_2 = 174;
+var y_2 = 15;
+function Draw_2() {
+    var c = document.getElementById("animation");
+    var cxt = c.getContext("2d");
+    //根据选择的magic不同skill_1选择的图片不同
+    var skill_1_2 = new Image();
+    skill_1_2.src = "image/4.png";
+    //根据怪物不同skill_2选择的图片不同
+    var skill_2_2 = new Image();
+    skill_2_2.src = "image/3.jpg";
+    cxt.clearRect(110, 0, 80, 150);
+    y_2 += 0;
+    if (x1_2 < 174) {
+        x1_2 += 2;
+        cxt.drawImage(skill_1_2, x1_2, y_2, 15, 15);
+    }
+    if (x1_2 == 174 && x2_2 > 110) {
+        x2_2 -= 2;
+        cxt.drawImage(skill_2_2, x2_2, y_2, 15, 15);
+    }
+}
+
+
 
 /***********************************************人物属性技能**************************************************/
 /**********************************************战斗角色头像***************************************************/
@@ -879,31 +913,45 @@ function rowAttackStatus(text1, text2, num) {
     }
 
     if (num == 1) {
+        /*普通攻击*/
         col1.onclick = function () {
-            magicflag = 0;
-            alert(magicflag);
+            magicflag = 6;
+            //alert(magicflag);
         }
+        /*技能3*/
         col2.onclick = function () {
             magicflag = 3;
-            alert(magicflag);
+            //alert(magicflag);
         }
-    }else if (num == 2) {
+    } else if (num == 2) {
+        /*技能1*/
         col1.onclick = function () {
-            magicflag = 1;
-            alert(magicflag);
+            Draw_1();
+            window.setInterval("Draw_1()", 50);
+            x1_1 = 110;
+            x2_1 = 174;
+            y_1 = 15;
+            //alert(magicflag);
         }
+        /*技能4*/
         col2.onclick = function () {
             magicflag = 4;
-            alert(magicflag);
+            //alert(magicflag);
         }
     } else if (num == 3) {
+        /*技能2*/
         col1.onclick = function () {
-            magicflag = 2;
-            alert(magicflag);
+            Draw_2();
+            window.setInterval("Draw_2()", 50);
+            x1_2 = 110;
+            x2_2 = 174;
+            y_2 = 15;
+            //alert(magicflag);
         }
+        /*技能5*/
         col2.onclick = function () {
             magicflag = 5;
-            alert(magicflag);
+            //alert(magicflag);
         }
     }
     return row;
@@ -1475,7 +1523,7 @@ function runAnimation(frameFunc) {
 			if(fightflag === 0)				//0:大地图状态
 				stop = frameFunc(timeStep) === false;
 			else if(fightflag ===1){		//1:属性界面状态
-
+			    DrawBattle();
 			}
 		}
 		lastTime = time;
