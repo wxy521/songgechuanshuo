@@ -1,0 +1,10 @@
+人物技能：skill_1,skill_2……,skill_n，普通攻击skill_0
+怪物技能：monster1_skill_0,monster1_skill_1,……（monster1，monster2 ……为怪物序号，与地图上使用的怪物名字相同）
+	  monster2_skill_0,monster2_skill_1,……（skill_n的序号为怪物的不同技能，可以只有一个）
+战斗界面怪物（大图）：monster1_1,monster2_1，……monstern_1（n为怪物序号,_1为固定值）
+大地图怪物（小图）：monster1_0,monster2_0,……monstern_0（n为怪物序号，_0为固定值）
+大地图NPC（小图）：npc1_0,npc2_0,……，npcn_0（n为NPC序号，_0为固定值）
+交互界面NPC（大图）：npc1_1,npc2_1,……，npcn_1（n为NPC序号，_1为固定值）
+地图背景图：background1_1,background1_2,background2_1,……backgroundn_m（n为关卡号，m为本关内地图序号，若没有则可不加_m）
+主角头像（小图）：player_headshot
+角色行走图像：随你心情
